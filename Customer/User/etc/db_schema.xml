@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="Employee_Details" resource="default" engine="innodb" comment="Employee details">
+        <column xsi:type="int" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="ename" nullable="false" length="25" comment="Employee Name"/>
+         <column xsi:type="varchar" name="add" nullable="false" length="50" comment="Employee Address"/>
+        <column xsi:type="varchar" name="dept" nullable="false" length="25" comment="Employee Department"/>
+        <column xsi:type="int" name="salary" nullable="false" length="10" comment="Employee Salary"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
+
+
+

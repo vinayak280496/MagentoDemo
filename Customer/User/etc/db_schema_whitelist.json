@@ -1,0 +1,14 @@
+{
+    "Employee_Details": {
+        "column": {
+            "id": true,
+            "emp_name": true,
+            "add": true,
+            "dept": true,
+            "salary": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

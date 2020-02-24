@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+echo $block->sayHello();
+
+?>
+
+<style>
+table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}
+td, th {  border: 1px solid #333;  text-align: left;  padding: 8px;  }
+tr:nth-child(even) { background-color: #dddddd; }
+.id{width:2%} .b1{align-items: right;padding: 70px 0;}
+
+</style>
+ <div>
+    <a href="#" id="click-me" class="action primary">ADD NEW Employee</a>
+</div>
+
+<div id="popup-modal"  style="display:none;">
+
+    <form class="" action="<?php echo $block->getBaseUrl().'user/index/save'; ?>" id="vky-test-form" method="post">
+    <fieldset class="fieldset">
+        <div class="field ename">
+            <label class="label" for="ename"><span>Name</span></label>
+            <div class="control">
+                <input name="ename" id="ename" title="ename" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field add">
+            <label class="label" for="add"><span>Address</span></label>
+            <div class="control">
+                <input name="add" id="add" title="add" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field dept">
+            <label class="label" for="dept"><span>Department</span></label>
+            <div class="control">
+                <input name="dept" id="dept" title="dept" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field salary">
+            <label class="label" for="salary"><span>Salary</span></label>
+            <div class="control">
+                <input name="salary" id="salary" title="salary" value="" class="input-text" type="text">
+            </div>
+        </div>
+    </fieldset>
+   <!--  <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Submit</span>
+            </button>
+        </div>
+    </div> -->
+</form>
+
+</div>
+
+
+<table>
+  <tr>
+    <th class="id">Id</th>
+    <th class="ename">Name</th>
+    <th class="add">Address</th>
+    <th class="dept">Department</th>
+    <th class="salary">Salary</th>
+    <th class="edit">Edit</th>
+    <th class="delete">Delete</th>
+  </tr>
+  <?php
+        $collection = $block->getPostCollection();
+        foreach($collection as $item){      
+    ?>
+    <tr>
+        <td><?php echo $item->getData('id'); ?></td>
+        <td><?php echo $item->getData('ename'); ?></td>
+        <td><?php echo $item->getData('add'); ?></td>
+        <td><?php echo $item->getData('dept'); ?></td>
+        <td><?php echo $item->getData('salary'); ?></td>
+        <td><input type="button" value="Edit" class="action primary" onclick=""></td>
+        <td><input type="button" value="Delete" class="action primary" onclick=""></td>
+    </tr>
+    <?php } ?>
+</table>
+
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'Add New Employee',
+                buttons: [{
+                    text: $.mage.__('ADD'),
+                    class: 'add1',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+            $("#click-me").on('click',function(){ 
+                $("#popup-modal").modal("openModal");
+            });
+                        $(".add1").click(function(e) {
+                  e.preventDefault();
+                  var ename = $("#ename").val(); 
+                  var add = $("#add").val();
+                  var dept = $("#dept").val();
+                  var salary = $("#salary").val();
+                  var dataString = 'ename='+ename+'&add='+add+'&dept='+dept+'&salary='+salary;
+                  //alert(dataString);return false;
+                  $.ajax({
+                    showLoader: true,
+                    type:'POST',
+                    data:dataString,
+                    dataType: "JSON",
+                    url:"<?php echo $block->getBaseUrl().'helloworld/index/save'; ?>",
+                    success:function(response) {
+                      alert(response);return false;
+                    },
+                  });
+                });
+            });
+
+</script>
+
+</body>
+</html>
+<!-- $data = $this->getRequest()->getPost();
+                    $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
+                    $query = "INSERT INTO Employee_Details (`ename`, `add`, `dept`, `salary`) VALUES ('".$data['ename']."', '".$data['add']."', '".$data['dept']."', '".$data['salary']."')";
+                    $connection->query($query); -->

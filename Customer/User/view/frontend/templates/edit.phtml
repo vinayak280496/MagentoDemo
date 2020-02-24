@@ -1,0 +1,18 @@
+<?php
+    $collection = $block->getPostCollection();
+    $edit = $block->load($_GET['id']);
+    echo "<pre/>";
+    print_r($edit->getData());
+?>
+    <form  method="post" name="item_form"  id="item_form" action="<?php echo $this->getBaseUrl().'helloworld/index/edit' ?>" enctype="multipart/form-data" >           
+        <input type="hidden" name="id" value="<?php echo $edit->getstd_id(); ?>" />
+        <label for="title"><?php echo $this->__('Stdname:- ') ?><span class="required">*</span></label>
+        <input type="text" id="ename" name="ename" value="<?php echo $edit->getData('ename'); ?>" class="input-text required-entry" />
+        <label for="title"><?php echo $this->__('Email Id:- ') ?><span class="required">*</span></label>
+        <input type="text" id="add" name="add" value="<?php echo $edit->getData('add'); ?>" class="input-text required-entry" />
+        <label for="title"><?php echo $this->__('Rollno:- ') ?><span class="required">*</span></label>
+        <input type="text" id="dept" name="dept" value="<?php echo $edit->getData('dept'); ?>" class="input-text required-entry" />
+        <label for="title"><?php echo $this->__('Rollno:- ') ?><span class="required">*</span></label>
+        <input type="text" id="salary" name="salary" value="<?php echo $edit->getData('salary'); ?>" class="input-text required-entry" />
+        <button type="submit" title="Update" name="submit" >Update</button>
+    </form>
