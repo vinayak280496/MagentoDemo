@@ -13,6 +13,7 @@ table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100
 td, th {  border: 1px solid #333;  text-align: left;  padding: 8px;  }
 tr:nth-child(even) { background-color: #dddddd; }
 .id{width:2%} .b1{align-items: right;padding: 70px 0;}
+.add1 {display: none;}
 
 </style>
  <div>
@@ -48,13 +49,13 @@ tr:nth-child(even) { background-color: #dddddd; }
             </div>
         </div>
     </fieldset>
-   <!--  <div class="actions-toolbar">
+    <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" title="Submit" class="action submit primary">
+            <button type="button" title="Submit" id="add1" class="action submit primary">
                 <span>Submit</span>
             </button>
         </div>
-    </div> -->
+    </div>
 </form>
 
 </div>
@@ -114,7 +115,7 @@ tr:nth-child(even) { background-color: #dddddd; }
             $("#click-me").on('click',function(){ 
                 $("#popup-modal").modal("openModal");
             });
-                        $(".add1").click(function(e) {
+                        $("#add1").click(function(e) {
                   e.preventDefault();
                   var ename = $("#ename").val(); 
                   var add = $("#add").val();
@@ -139,7 +140,3 @@ tr:nth-child(even) { background-color: #dddddd; }
 
 </body>
 </html>
-<!-- $data = $this->getRequest()->getPost();
-                    $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
-                    $query = "INSERT INTO Employee_Details (`ename`, `add`, `dept`, `salary`) VALUES ('".$data['ename']."', '".$data['add']."', '".$data['dept']."', '".$data['salary']."')";
-                    $connection->query($query); -->
